@@ -1,0 +1,46 @@
+=================================================================
+  DATA CLEANING SUMMARY REPORT
+  Superstore Sales Dataset
+  Generated: 2026-06-16 12:16:26
+=================================================================
+
+DIMENSION COMPARISON
+-----------------------------------------------------------------
+  Metric                 Original           Cleaned           
+  --------------------   ----------------   ----------------  
+  Rows                   9,994              9,986             
+  Columns                21                 29                
+  Rows Removed           —                  8                 
+  Removal Rate           —                  0.08             %
+
+CLEANING ACTIONS PERFORMED
+-----------------------------------------------------------------
+  Exact duplicates removed          :  0
+  Partial duplicates removed        :  see log
+  Invalid rows removed (Step 6)     :  0
+  Negative shipping days removed    :  0
+  Missing values imputed            :  0
+  Date format standardized          :  D/M/YYYY
+  Derived columns added             :  8
+  Data types optimized              :  8 columns
+  ML anomalies detected (logged)    :  200
+
+NUMERIC SUMMARY (Cleaned Data)
+-----------------------------------------------------------------
+              Sales     Quantity     Discount       Profit  Profit_Margin  Shipping_Days
+count   9986.000000  9986.000000  9986.000000  9986.000000    9986.000000    9986.000000
+mean     229.872779     3.789305     0.156258    28.641480      12.018479       3.958542
+std      623.477775     2.225286     0.206499   234.349134      46.689386       1.747875
+min        0.444000     1.000000     0.000000 -6599.978000    -275.000000       0.000000
+25%       17.248000     2.000000     0.000000     1.728000       7.500000       3.000000
+50%       54.384000     3.000000     0.200000     8.641350      27.000000       4.000000
+75%      209.917500     5.000000     0.200000    29.353800      36.250000       5.000000
+max    22638.480000    14.000000     0.800000  8399.976000      50.000000       7.000000
+
+DATA QUALITY SCORECARD
+-----------------------------------------------------------------
+  Completeness    :  100.00%
+  Uniqueness      :  100.00%
+  Date Validity   :  100.00%
+  Missing Values  :  0
+  Duplicate Rows  :  0

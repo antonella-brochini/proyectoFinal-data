@@ -1,0 +1,97 @@
+2026-07-08 20:29:04  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:04  [INFO    ]    1. Database Connection
+2026-07-08 20:29:04  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:06  [INFO    ]  Connected to: PostgreSQL 18.4 (eaf151e) on aarch64-unknown-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit
+2026-07-08 20:29:06  [INFO    ]  Database: working_database  |  Host: ep-bitter-dawn-atuk0kdr-pooler.c-9.us-east-1.aws.neon.tech:5432
+2026-07-08 20:29:06  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:06  [INFO    ]    2. Loading CSV Data
+2026-07-08 20:29:06  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:06  [INFO    ]  Loaded 9,986 rows x 29 columns from 'd:\Proyectos Personales\proyecto final curso\data\processed\clean_data.csv'
+2026-07-08 20:29:06  [INFO    ]  Columns: ['Row ID', 'Order ID', 'Order Date', 'Ship Date', 'Shipping_Days', 'Ship Mode', 'Customer ID', 'Customer Name', 'Segment', 'Country', 'City', 'State', 'Postal Code', 'Region', 'Product ID', 'Category', 'Sub-Category', 'Product Name', 'Sales', 'Quantity', 'Discount', 'Profit', 'Order_Year', 'Order_Month', 'Order_Quarter', 'Order_DayName', 'Profit_Margin', 'Is_Loss', 'Discount_Tier']
+2026-07-08 20:29:06  [INFO    ]  Type conversions applied (dates, integers, postal code zero-padding)
+2026-07-08 20:29:06  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:06  [INFO    ]    3. Dropping Existing Objects
+2026-07-08 20:29:06  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:06  [INFO    ]  All existing tables dropped (if any)
+2026-07-08 20:29:06  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:06  [INFO    ]    4. Creating Flat Table: sales_data
+2026-07-08 20:29:06  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:07  [INFO    ]  Table 'sales_data' created with 29 columns, 15 indexes, 8 constraints
+2026-07-08 20:29:07  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:07  [INFO    ]    5. Importing Data into sales_data
+2026-07-08 20:29:07  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:15  [DEBUG   ]    Batch inserted rows 1-2000
+2026-07-08 20:29:23  [DEBUG   ]    Batch inserted rows 2001-4000
+2026-07-08 20:29:31  [DEBUG   ]    Batch inserted rows 4001-6000
+2026-07-08 20:29:39  [DEBUG   ]    Batch inserted rows 6001-8000
+2026-07-08 20:29:48  [DEBUG   ]    Batch inserted rows 8001-9986
+2026-07-08 20:29:48  [INFO    ]  Inserted 9,986 rows in 41.34s (242 rows/sec)
+2026-07-08 20:29:48  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:48  [INFO    ]    6. Creating Star Schema
+2026-07-08 20:29:48  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:49  [INFO    ]  Star schema created: 5 dimension tables + 1 fact table
+2026-07-08 20:29:49  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:49  [INFO    ]    7. Populating Dimension Tables
+2026-07-08 20:29:49  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:29:50  [INFO    ]  dim_customer: 793 rows inserted
+2026-07-08 20:29:54  [INFO    ]  dim_product: 1,862 rows inserted
+2026-07-08 20:29:55  [INFO    ]  dim_geography: 631 rows inserted
+2026-07-08 20:29:59  [INFO    ]  dim_date: 1,434 rows inserted
+2026-07-08 20:30:00  [INFO    ]  dim_ship_mode: 4 rows inserted
+2026-07-08 20:30:00  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:30:00  [INFO    ]    8. Populating Fact Table (fact_sales)
+2026-07-08 20:30:00  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:30:24  [INFO    ]  fact_sales: 9,986 rows inserted in 20.58s (485 rows/sec)
+2026-07-08 20:30:24  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:30:24  [INFO    ]    9. Creating Analytical Views
+2026-07-08 20:30:24  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:30:24  [INFO    ]  Created 4 analytical views: v_monthly_sales, v_regional_performance, v_category_performance, v_top_customers
+2026-07-08 20:30:24  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:30:24  [INFO    ]    10. Data Import Verification
+2026-07-08 20:30:24  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:30:24  [INFO    ]  -- Row Count Verification --
+2026-07-08 20:30:25  [INFO    ]    [PASS] sales_data row count: 9,986
+2026-07-08 20:30:25  [INFO    ]    [PASS] fact_sales row count: 9,986
+2026-07-08 20:30:25  [INFO    ]    [PASS] dim_customer row count: 793
+2026-07-08 20:30:25  [INFO    ]    [PASS] dim_product row count: 1,862
+2026-07-08 20:30:25  [INFO    ]    [PASS] dim_geography row count: 631
+2026-07-08 20:30:25  [INFO    ]    [PASS] dim_date row count: 1,434
+2026-07-08 20:30:26  [INFO    ]    [PASS] dim_ship_mode row count: 4
+2026-07-08 20:30:26  [INFO    ]  -- Aggregate Consistency (Flat vs CSV) --
+2026-07-08 20:30:26  [INFO    ]    [PASS] Total Sales (sales_data): 2,295,509.57
+2026-07-08 20:30:26  [INFO    ]    [PASS] Total Profit (sales_data): 286,013.82
+2026-07-08 20:30:26  [INFO    ]  -- Cross-Schema Consistency (Flat vs Star) --
+2026-07-08 20:30:26  [INFO    ]    [PASS] Flat total sales matches star total: 1
+2026-07-08 20:30:26  [INFO    ]    [PASS] Flat total profit matches star total: 1
+2026-07-08 20:30:26  [INFO    ]  -- Constraint & Integrity Checks --
+2026-07-08 20:30:26  [INFO    ]    [PASS] No negative sales values: 0
+2026-07-08 20:30:27  [INFO    ]    [PASS] No negative quantities: 0
+2026-07-08 20:30:27  [INFO    ]    [PASS] No invalid discounts (>1): 0
+2026-07-08 20:30:27  [INFO    ]    [PASS] No ship before order: 0
+2026-07-08 20:30:27  [INFO    ]    [PASS] Orphaned fact rows (customer): 0
+2026-07-08 20:30:27  [INFO    ]    [PASS] Orphaned fact rows (product): 0
+2026-07-08 20:30:27  [INFO    ]  -- Sample Data Preview (first 3 rows) --
+2026-07-08 20:30:27  [INFO    ]    Row 1: CA-2016-152156 | 2016-11-08 | Claire Gute | Furniture | $261.96 | $41.91
+2026-07-08 20:30:27  [INFO    ]    Row 2: CA-2016-152156 | 2016-11-08 | Claire Gute | Furniture | $731.94 | $219.58
+2026-07-08 20:30:27  [INFO    ]    Row 3: CA-2016-138688 | 2016-06-12 | Darrin Van Huff | Office Supplies | $14.62 | $6.87
+2026-07-08 20:30:27  [INFO    ]  -- Table Sizes --
+2026-07-08 20:30:28  [INFO    ]    sales_data           ->  9,986 rows  |  5032 kB
+2026-07-08 20:30:28  [INFO    ]    fact_sales           ->  9,986 rows  |  3000 kB
+2026-07-08 20:30:28  [INFO    ]    dim_customer         ->    793 rows  |  160 kB
+2026-07-08 20:30:28  [INFO    ]    dim_product          ->  1,862 rows  |  376 kB
+2026-07-08 20:30:29  [INFO    ]    dim_geography        ->    631 rows  |  144 kB
+2026-07-08 20:30:29  [INFO    ]    dim_date             ->  1,434 rows  |  216 kB
+2026-07-08 20:30:29  [INFO    ]    dim_ship_mode        ->      4 rows  |  40 kB
+2026-07-08 20:30:29  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:30:29  [INFO    ]    11. Import Summary
+2026-07-08 20:30:29  [INFO    ]  ----------------------------------------------------------------------
+2026-07-08 20:30:29  [INFO    ]  Database         : working_database
+2026-07-08 20:30:29  [INFO    ]  Host             : ep-bitter-dawn-atuk0kdr-pooler.c-9.us-east-1.aws.neon.tech:5432
+2026-07-08 20:30:29  [INFO    ]  User             : neondb_owner
+2026-07-08 20:30:29  [INFO    ]  CSV Source       : d:\Proyectos Personales\proyecto final curso\data\processed\clean_data.csv (9,986 rows)
+2026-07-08 20:30:29  [INFO    ]  Flat Table       : sales_data (9,986 rows, 29 cols)
+2026-07-08 20:30:29  [INFO    ]  Star Schema      : 5 dimensions + 1 fact table (9,986 facts)
+2026-07-08 20:30:29  [INFO    ]  Views Created    : 4 analytical views
+2026-07-08 20:30:29  [INFO    ]  Verification     : 17/17 checks passed
+2026-07-08 20:30:29  [INFO    ]  ALL VERIFICATION CHECKS PASSED - Database is ready!
+2026-07-08 20:30:29  [INFO    ]  Connection closed.
