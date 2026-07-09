@@ -60,14 +60,20 @@ st.markdown("""
 
 
 # Data Loading
+def get_config(key, default=None):
+    if key in st.secrets:
+        return st.secrets[key]
+    return os.environ.get(key, default)
+
+
 @st.cache_data
 def load_data():
-    db_name = os.environ.get("DB_NAME", "working_database")
-    db_user = os.environ.get("DB_USER", "postgres")
-    db_password = os.environ.get("DB_PASSWORD", "your_password_here")
-    db_host = os.environ.get("DB_HOST", "localhost")
-    db_port = os.environ.get("DB_PORT", "5432")
-    sslmode = os.environ.get("DB_SSLMODE", "require")
+    db_name = get_config("DB_NAME", "working_database")
+    db_user = get_config("DB_USER", "postgres")
+    db_password = get_config("DB_PASSWORD", "your_password_here")
+    db_host = get_config("DB_HOST", "localhost")
+    db_port = get_config("DB_PORT", "5432")
+    sslmode = get_config("DB_SSLMODE", "require")
 
     connection_url = (
         f"postgresql+psycopg2://{quote_plus(db_user)}:{quote_plus(db_password)}"
