@@ -62,7 +62,7 @@ Data Analytics Project/
 |-- Queries/
 | +-- Query 1-8/ # Exportaciones SQL para Power BI con resultados CSV
 |
-|-- dashboards/ # Capturas de dashboards Power BI
+|-- dashboards/ # Capturas de Streamlit + Plotly
 | +-- 1-5.png
 |
 |-- docs/
@@ -74,6 +74,9 @@ Data Analytics Project/
 | |-- cleaning_log.txt
 | |-- cleaning_summary.txt
 | +-- db_import_log.txt
+|
+|-- power bi/
+| |-- dashboard.pbix
 |
 |-- dashboard.html # Dashboard HTML interactivo independiente
 |-- .env # Credenciales locales (no versionadas)
@@ -94,7 +97,7 @@ python scripts/analyze_data.py > logs/analyze_data_output.txt
 python scripts/data_cleaning.py
 
 # Phase 3: Create database and import data
-# (requires PostgreSQL running locally)
+# (requires PostgreSQL connection configured through environment variables)
 python scripts/db_import.py
 
 # Phase 4: Generate charts from SQL analysis
@@ -112,6 +115,62 @@ python scripts/export_html.py
 # Launch Streamlit live dashboard
 python -m streamlit run scripts/dashboard.py
 ```
+## Pipeline Orchestration with Apache Airflow
+
+El proyecto incluye una capa de orquestación utilizando **Apache Airflow ejecutado mediante Docker Compose**.
+
+Airflow permite automatizar y monitorear la ejecución completa del pipeline analítico, reemplazando la ejecución manual de cada script por un DAG (Directed Acyclic Graph) con dependencias secuenciales entre tareas.
+
+### Architecture
+Docker Environment
+│
+├── Apache Airflow
+│ ├── Scheduler
+│ ├── Worker (CeleryExecutor)
+│ ├── DAG Processor
+│ └── Web UI
+│
+└── Superstore Analytics Pipeline
+│
+├── 1. Data Profiling
+│ └── analyze_data.py
+│
+├── 2. Data Cleaning
+│ └── data_cleaning.py
+│
+├── 3. Database Loading
+│ └── db_import.py
+│
+├── 4. SQL Visualization
+│ └── showcase.py
+│
+├── 5. Advanced Analytics
+│ └── advanced_analytics.py
+│
+├── 6. Interactive Dashboards
+│ └── interactive_dashboard.py
+│
+└── 7. HTML Export
+└── export_html.py
+
+### Airflow DAG
+
+El DAG `superstore_pipeline` ejecuta las etapas del proyecto de forma secuencial:
+
+```text
+analyze_data
+      ↓
+data_cleaning
+      ↓
+db_import
+      ↓
+showcase
+      ↓
+advanced_analytics
+      ↓
+interactive_dashboard
+      ↓
+export_html
 
 ## Database Schema
 

@@ -1,129 +1,129 @@
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    1. Loading Raw Data
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]  Loaded 9,994 rows × 21 columns from 'c:\Users\Omar Rehan\Desktop\Data Analytics Project\data\raw\Superstore sales dataset.csv'
-2026-06-16 12:16:25  [INFO    ]  Columns: ['Row ID', 'Order ID', 'Order Date', 'Ship Date', 'Ship Mode', 'Customer ID', 'Customer Name', 'Segment', 'Country', 'City', 'State', 'Postal Code', 'Region', 'Product ID', 'Category', 'Sub-Category', 'Product Name', 'Sales', 'Quantity', 'Discount', 'Profit']
-2026-06-16 12:16:25  [INFO    ]  Memory usage: 3420.2 KB
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    2. Exact Duplicate Removal
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]  Exact duplicate rows detected: 0
-2026-06-16 12:16:25  [INFO    ]  No exact duplicates found. Data unchanged.
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    3. Partial Duplicate Removal (Order ID + Product ID)
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]  Rows involved in duplicate (Order ID + Product ID) pairs: 16
-2026-06-16 12:16:25  [DEBUG   ]    Order=CA-2015-103135, Product=OFF-BI-10000069 → 2 rows (keeping first, indices [6498, 6500])
-2026-06-16 12:16:25  [DEBUG   ]    Order=CA-2016-129714, Product=OFF-PA-10001970 → 2 rows (keeping first, indices [350, 352])
-2026-06-16 12:16:25  [DEBUG   ]    Order=CA-2016-137043, Product=FUR-FU-10003664 → 2 rows (keeping first, indices [1300, 1301])
-2026-06-16 12:16:25  [DEBUG   ]    Order=CA-2016-140571, Product=OFF-PA-10001954 → 2 rows (keeping first, indices [9168, 9169])
-2026-06-16 12:16:25  [DEBUG   ]    Order=CA-2017-118017, Product=TEC-AC-10002006 → 2 rows (keeping first, indices [7881, 7882])
-2026-06-16 12:16:25  [DEBUG   ]    Order=CA-2017-152912, Product=OFF-ST-10003208 → 2 rows (keeping first, indices [3183, 3184])
-2026-06-16 12:16:25  [DEBUG   ]    Order=US-2014-150119, Product=FUR-CH-10002965 → 2 rows (keeping first, indices [3405, 3406])
-2026-06-16 12:16:25  [DEBUG   ]    Order=US-2016-123750, Product=TEC-AC-10004659 → 2 rows (keeping first, indices [430, 431])
-2026-06-16 12:16:25  [INFO    ]  Removed 8 partial duplicate row(s).  Shape → (9986, 21)
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    4. Missing Value Analysis & Imputation
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]  Total missing cells: 0 (0.00% of all cells)
-2026-06-16 12:16:25  [INFO    ]  Dataset is complete — zero missing values. No imputation required.
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    5. Date Parsing, Standardization & Validation
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]  Detecting date format …
-2026-06-16 12:16:25  [INFO    ]    Parsed with D/M/YYYY: 9,986 / 9,986
-2026-06-16 12:16:25  [INFO    ]    Parsed with M/D/YYYY: 4,039 / 9,986
-2026-06-16 12:16:25  [INFO    ]    ► Chosen format: D/M/YYYY (higher parse success)
-2026-06-16 12:16:25  [INFO    ]    Unparseable Order Dates: 0
-2026-06-16 12:16:25  [INFO    ]    Unparseable Ship Dates:  0
-2026-06-16 12:16:25  [INFO    ]    Order Date range: 2014-01-03 → 2017-12-30
-2026-06-16 12:16:25  [INFO    ]    Ship Date range:  2014-01-07  → 2018-01-05
-2026-06-16 12:16:25  [INFO    ]    Future-dated orders (>2027-01-01): 0
-2026-06-16 12:16:25  [INFO    ]    Future-dated shipments: 0
-2026-06-16 12:16:25  [INFO    ]    Rows where Ship Date < Order Date (negative days): 0
-2026-06-16 12:16:25  [INFO    ]    Rows with shipping > 365 days (outlier): 0
-2026-06-16 12:16:25  [INFO    ]    Shipping days — Min: 0, Max: 7, Mean: 4.0, Median: 4
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    6. Invalid Row Detection & Removal
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    Rows with Quantity ≤ 0: 0
-2026-06-16 12:16:25  [INFO    ]    Rows with negative Sales: 0
-2026-06-16 12:16:25  [INFO    ]    Rows with Quantity > 100: 0
-2026-06-16 12:16:25  [INFO    ]    Rows with Discount > 100%: 0
-2026-06-16 12:16:25  [INFO    ]    Rows with Sales = 0 but Quantity > 0: 0
-2026-06-16 12:16:25  [INFO    ]    Total invalid rows removed in Step 6: 0
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    7. Categorical Data Validation
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    Ship Mode — valid values: {'Same Day', 'Standard Class', 'Second Class', 'First Class'}
-2026-06-16 12:16:25  [INFO    ]    Ship Mode — unexpected values: None
-2026-06-16 12:16:25  [INFO    ]    Segment — valid values: {'Corporate', 'Consumer', 'Home Office'}
-2026-06-16 12:16:25  [INFO    ]    Segment — unexpected values: None
-2026-06-16 12:16:25  [INFO    ]    Region — valid values: {'Central', 'South', 'East', 'West'}
-2026-06-16 12:16:25  [INFO    ]    Region — unexpected values: None
-2026-06-16 12:16:25  [INFO    ]    Category — valid values: {'Furniture', 'Technology', 'Office Supplies'}
-2026-06-16 12:16:25  [INFO    ]    Category — unexpected values: None
-2026-06-16 12:16:25  [INFO    ]    Country unique values: ['United States']
-2026-06-16 12:16:25  [INFO    ]    Sub-Category ↔ Category cross-validation complete.
-2026-06-16 12:16:25  [INFO    ]    Stripped whitespace in 'Product Name': 16 value(s) changed
-2026-06-16 12:16:25  [INFO    ]    Categorical validation complete.
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]    8. Advanced Outlier Detection
-2026-06-16 12:16:25  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:25  [INFO    ]  ── 8a. IQR Method ──
-2026-06-16 12:16:25  [INFO    ]    Sales: Q1=17.25, Q3=209.92, IQR=192.67, Bounds=[-271.76, 498.92], Outliers=1166
-2026-06-16 12:16:25  [INFO    ]    Profit: Q1=1.73, Q3=29.35, IQR=27.63, Bounds=[-39.71, 70.79], Outliers=1879
-2026-06-16 12:16:25  [INFO    ]  ── 8b. Z-Score Method (|z| > 3) ──
-2026-06-16 12:16:25  [INFO    ]    Sales: Z-score outliers (|z|>3) = 127 (1.27%)
-2026-06-16 12:16:25  [INFO    ]    Profit: Z-score outliers (|z|>3) = 107 (1.07%)
-2026-06-16 12:16:25  [INFO    ]    Quantity: Z-score outliers (|z|>3) = 113 (1.13%)
-2026-06-16 12:16:25  [INFO    ]  ── 8c. Modified Z-Score (MAD-based, threshold=3.5) ──
-2026-06-16 12:16:25  [INFO    ]    Sales: MAD=45.37, Modified Z outliers = 1946 (19.49%)
-2026-06-16 12:16:25  [INFO    ]    Profit: MAD=10.78, Modified Z outliers = 1925 (19.28%)
-2026-06-16 12:16:25  [INFO    ]  ── 8d. Isolation Forest (ML Anomaly Detection) ──
-2026-06-16 12:16:26  [INFO    ]    Features used: ['Sales', 'Quantity', 'Discount', 'Profit']
-2026-06-16 12:16:26  [INFO    ]    Contamination set: 2%
-2026-06-16 12:16:26  [INFO    ]    Anomalies detected: 200 (2.00%)
-2026-06-16 12:16:26  [INFO    ]    Anomaly profile (means):
-2026-06-16 12:16:26  [INFO    ]      Sales       : anomaly mean=2977.33  vs normal mean=173.72
-2026-06-16 12:16:26  [INFO    ]      Quantity    : anomaly mean=6.83  vs normal mean=3.73
-2026-06-16 12:16:26  [INFO    ]      Discount    : anomaly mean=0.24  vs normal mean=0.15
-2026-06-16 12:16:26  [INFO    ]      Profit      : anomaly mean=373.55  vs normal mean=21.59
-2026-06-16 12:16:26  [INFO    ]    ► Anomalies logged but preserved (legitimate business extremes).
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]    9. Derived Feature Engineering
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]    Created: Order_Year, Order_Month, Order_Quarter, Order_DayName
-2026-06-16 12:16:26  [INFO    ]    Created: Profit_Margin (%)
-2026-06-16 12:16:26  [INFO    ]    Created: Is_Loss  (flagged 1,870 loss rows)
-2026-06-16 12:16:26  [INFO    ]    Created: Discount_Tier (categorical)
-2026-06-16 12:16:26  [INFO    ]    Shipping_Days already computed (Step 5d)
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]    10. Data Type Optimization
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]    'Ship Mode' → category  (unique: 4)
-2026-06-16 12:16:26  [INFO    ]    'Segment' → category  (unique: 3)
-2026-06-16 12:16:26  [INFO    ]    'Country' → category  (unique: 1)
-2026-06-16 12:16:26  [INFO    ]    'Region' → category  (unique: 4)
-2026-06-16 12:16:26  [INFO    ]    'Category' → category  (unique: 3)
-2026-06-16 12:16:26  [INFO    ]    'Sub-Category' → category  (unique: 17)
-2026-06-16 12:16:26  [INFO    ]    'Discount_Tier' → category  (unique: 6)
-2026-06-16 12:16:26  [INFO    ]    'Order_DayName' → category  (unique: 7)
-2026-06-16 12:16:26  [INFO    ]    Memory after optimization: 2513.5 KB
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]    11. Final Data Integrity Checks
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]    Total missing cells after cleaning: 0
-2026-06-16 12:16:26  [INFO    ]    Exact duplicate rows after cleaning: 0
-2026-06-16 12:16:26  [INFO    ]    Row ID uniqueness violations: 0
-2026-06-16 12:16:26  [INFO    ]    Data completeness: 289594/289594 (100.00%)
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]    12. Saving Cleaned Dataset
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]  Saved 9,986 rows × 29 columns → 'c:\Users\Omar Rehan\Desktop\Data Analytics Project\data\processed\clean_data.csv'
-2026-06-16 12:16:26  [INFO    ]  New columns added: {'Order_Year', 'Order_Quarter', 'Order_DayName', 'Is_Loss', 'Shipping_Days', 'Discount_Tier', 'Profit_Margin', 'Order_Month'}
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]    13. Generating Summary Report
-2026-06-16 12:16:26  [INFO    ]  ----------------------------------------------------------------------
-2026-06-16 12:16:26  [INFO    ]  Summary report saved → 'c:\Users\Omar Rehan\Desktop\Data Analytics Project\logs\cleaning_summary.txt'
-2026-06-16 12:16:26  [INFO    ]  ═══ PIPELINE COMPLETE ═══
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]    1. Loading Raw Data
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]  Loaded 9,994 rows × 21 columns from '/opt/proyecto/data/raw/Superstore sales dataset.csv'
+2026-07-09 12:39:54  [INFO    ]  Columns: ['Row ID', 'Order ID', 'Order Date', 'Ship Date', 'Ship Mode', 'Customer ID', 'Customer Name', 'Segment', 'Country', 'City', 'State', 'Postal Code', 'Region', 'Product ID', 'Category', 'Sub-Category', 'Product Name', 'Sales', 'Quantity', 'Discount', 'Profit']
+2026-07-09 12:39:54  [INFO    ]  Memory usage: 9430.0 KB
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]    2. Exact Duplicate Removal
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]  Exact duplicate rows detected: 0
+2026-07-09 12:39:54  [INFO    ]  No exact duplicates found. Data unchanged.
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]    3. Partial Duplicate Removal (Order ID + Product ID)
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]  Rows involved in duplicate (Order ID + Product ID) pairs: 16
+2026-07-09 12:39:54  [DEBUG   ]    Order=CA-2015-103135, Product=OFF-BI-10000069 → 2 rows (keeping first, indices [6498, 6500])
+2026-07-09 12:39:54  [DEBUG   ]    Order=CA-2016-129714, Product=OFF-PA-10001970 → 2 rows (keeping first, indices [350, 352])
+2026-07-09 12:39:54  [DEBUG   ]    Order=CA-2016-137043, Product=FUR-FU-10003664 → 2 rows (keeping first, indices [1300, 1301])
+2026-07-09 12:39:54  [DEBUG   ]    Order=CA-2016-140571, Product=OFF-PA-10001954 → 2 rows (keeping first, indices [9168, 9169])
+2026-07-09 12:39:54  [DEBUG   ]    Order=CA-2017-118017, Product=TEC-AC-10002006 → 2 rows (keeping first, indices [7881, 7882])
+2026-07-09 12:39:54  [DEBUG   ]    Order=CA-2017-152912, Product=OFF-ST-10003208 → 2 rows (keeping first, indices [3183, 3184])
+2026-07-09 12:39:54  [DEBUG   ]    Order=US-2014-150119, Product=FUR-CH-10002965 → 2 rows (keeping first, indices [3405, 3406])
+2026-07-09 12:39:54  [DEBUG   ]    Order=US-2016-123750, Product=TEC-AC-10004659 → 2 rows (keeping first, indices [430, 431])
+2026-07-09 12:39:54  [INFO    ]  Removed 8 partial duplicate row(s).  Shape → (9986, 21)
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]    4. Missing Value Analysis & Imputation
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]  Total missing cells: 0 (0.00% of all cells)
+2026-07-09 12:39:54  [INFO    ]  Dataset is complete — zero missing values. No imputation required.
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]    5. Date Parsing, Standardization & Validation
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]  Detecting date format …
+2026-07-09 12:39:54  [INFO    ]    Parsed with D/M/YYYY: 9,986 / 9,986
+2026-07-09 12:39:54  [INFO    ]    Parsed with M/D/YYYY: 4,039 / 9,986
+2026-07-09 12:39:54  [INFO    ]    ► Chosen format: D/M/YYYY (higher parse success)
+2026-07-09 12:39:54  [INFO    ]    Unparseable Order Dates: 0
+2026-07-09 12:39:54  [INFO    ]    Unparseable Ship Dates:  0
+2026-07-09 12:39:54  [INFO    ]    Order Date range: 2014-01-03 → 2017-12-30
+2026-07-09 12:39:54  [INFO    ]    Ship Date range:  2014-01-07  → 2018-01-05
+2026-07-09 12:39:54  [INFO    ]    Future-dated orders (>2027-01-01): 0
+2026-07-09 12:39:54  [INFO    ]    Future-dated shipments: 0
+2026-07-09 12:39:54  [INFO    ]    Rows where Ship Date < Order Date (negative days): 0
+2026-07-09 12:39:54  [INFO    ]    Rows with shipping > 365 days (outlier): 0
+2026-07-09 12:39:54  [INFO    ]    Shipping days — Min: 0, Max: 7, Mean: 4.0, Median: 4
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]    6. Invalid Row Detection & Removal
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]    Rows with Quantity ≤ 0: 0
+2026-07-09 12:39:54  [INFO    ]    Rows with negative Sales: 0
+2026-07-09 12:39:54  [INFO    ]    Rows with Quantity > 100: 0
+2026-07-09 12:39:54  [INFO    ]    Rows with Discount > 100%: 0
+2026-07-09 12:39:54  [INFO    ]    Rows with Sales = 0 but Quantity > 0: 0
+2026-07-09 12:39:54  [INFO    ]    Total invalid rows removed in Step 6: 0
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]    7. Categorical Data Validation
+2026-07-09 12:39:54  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:54  [INFO    ]    Ship Mode — valid values: {'Second Class', 'First Class', 'Standard Class', 'Same Day'}
+2026-07-09 12:39:54  [INFO    ]    Ship Mode — unexpected values: None
+2026-07-09 12:39:54  [INFO    ]    Segment — valid values: {'Home Office', 'Consumer', 'Corporate'}
+2026-07-09 12:39:54  [INFO    ]    Segment — unexpected values: None
+2026-07-09 12:39:54  [INFO    ]    Region — valid values: {'West', 'East', 'South', 'Central'}
+2026-07-09 12:39:54  [INFO    ]    Region — unexpected values: None
+2026-07-09 12:39:54  [INFO    ]    Category — valid values: {'Office Supplies', 'Technology', 'Furniture'}
+2026-07-09 12:39:54  [INFO    ]    Category — unexpected values: None
+2026-07-09 12:39:54  [INFO    ]    Country unique values: ['United States']
+2026-07-09 12:39:54  [INFO    ]    Sub-Category ↔ Category cross-validation complete.
+2026-07-09 12:39:55  [INFO    ]    Stripped whitespace in 'Product Name': 16 value(s) changed
+2026-07-09 12:39:55  [INFO    ]    Categorical validation complete.
+2026-07-09 12:39:55  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:55  [INFO    ]    8. Advanced Outlier Detection
+2026-07-09 12:39:55  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:55  [INFO    ]  ── 8a. IQR Method ──
+2026-07-09 12:39:55  [INFO    ]    Sales: Q1=17.25, Q3=209.92, IQR=192.67, Bounds=[-271.76, 498.92], Outliers=1166
+2026-07-09 12:39:55  [INFO    ]    Profit: Q1=1.73, Q3=29.35, IQR=27.63, Bounds=[-39.71, 70.79], Outliers=1879
+2026-07-09 12:39:55  [INFO    ]  ── 8b. Z-Score Method (|z| > 3) ──
+2026-07-09 12:39:55  [INFO    ]    Sales: Z-score outliers (|z|>3) = 127 (1.27%)
+2026-07-09 12:39:55  [INFO    ]    Profit: Z-score outliers (|z|>3) = 107 (1.07%)
+2026-07-09 12:39:55  [INFO    ]    Quantity: Z-score outliers (|z|>3) = 113 (1.13%)
+2026-07-09 12:39:55  [INFO    ]  ── 8c. Modified Z-Score (MAD-based, threshold=3.5) ──
+2026-07-09 12:39:55  [INFO    ]    Sales: MAD=45.37, Modified Z outliers = 1946 (19.49%)
+2026-07-09 12:39:55  [INFO    ]    Profit: MAD=10.78, Modified Z outliers = 1925 (19.28%)
+2026-07-09 12:39:55  [INFO    ]  ── 8d. Isolation Forest (ML Anomaly Detection) ──
+2026-07-09 12:39:56  [INFO    ]    Features used: ['Sales', 'Quantity', 'Discount', 'Profit']
+2026-07-09 12:39:56  [INFO    ]    Contamination set: 2%
+2026-07-09 12:39:56  [INFO    ]    Anomalies detected: 200 (2.00%)
+2026-07-09 12:39:56  [INFO    ]    Anomaly profile (means):
+2026-07-09 12:39:56  [INFO    ]      Sales       : anomaly mean=2977.33  vs normal mean=173.72
+2026-07-09 12:39:56  [INFO    ]      Quantity    : anomaly mean=6.83  vs normal mean=3.73
+2026-07-09 12:39:56  [INFO    ]      Discount    : anomaly mean=0.24  vs normal mean=0.15
+2026-07-09 12:39:56  [INFO    ]      Profit      : anomaly mean=373.55  vs normal mean=21.59
+2026-07-09 12:39:56  [INFO    ]    ► Anomalies logged but preserved (legitimate business extremes).
+2026-07-09 12:39:56  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:56  [INFO    ]    9. Derived Feature Engineering
+2026-07-09 12:39:56  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:56  [INFO    ]    Created: Order_Year, Order_Month, Order_Quarter, Order_DayName
+2026-07-09 12:39:56  [INFO    ]    Created: Profit_Margin (%)
+2026-07-09 12:39:56  [INFO    ]    Created: Is_Loss  (flagged 1,870 loss rows)
+2026-07-09 12:39:56  [INFO    ]    Created: Discount_Tier (categorical)
+2026-07-09 12:39:56  [INFO    ]    Shipping_Days already computed (Step 5d)
+2026-07-09 12:39:56  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:56  [INFO    ]    10. Data Type Optimization
+2026-07-09 12:39:56  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:56  [INFO    ]    'Ship Mode' → category  (unique: 4)
+2026-07-09 12:39:56  [INFO    ]    'Segment' → category  (unique: 3)
+2026-07-09 12:39:56  [INFO    ]    'Country' → category  (unique: 1)
+2026-07-09 12:39:56  [INFO    ]    'Region' → category  (unique: 4)
+2026-07-09 12:39:56  [INFO    ]    'Category' → category  (unique: 3)
+2026-07-09 12:39:56  [INFO    ]    'Sub-Category' → category  (unique: 17)
+2026-07-09 12:39:56  [INFO    ]    'Discount_Tier' → category  (unique: 6)
+2026-07-09 12:39:56  [INFO    ]    'Order_DayName' → category  (unique: 7)
+2026-07-09 12:39:56  [INFO    ]    Memory after optimization: 5587.8 KB
+2026-07-09 12:39:56  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:56  [INFO    ]    11. Final Data Integrity Checks
+2026-07-09 12:39:56  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:56  [INFO    ]    Total missing cells after cleaning: 0
+2026-07-09 12:39:56  [INFO    ]    Exact duplicate rows after cleaning: 0
+2026-07-09 12:39:56  [INFO    ]    Row ID uniqueness violations: 0
+2026-07-09 12:39:56  [INFO    ]    Data completeness: 289594/289594 (100.00%)
+2026-07-09 12:39:56  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:56  [INFO    ]    12. Saving Cleaned Dataset
+2026-07-09 12:39:56  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:57  [INFO    ]  Saved 9,986 rows × 29 columns → '/opt/proyecto/data/processed/clean_data.csv'
+2026-07-09 12:39:57  [INFO    ]  New columns added: {'Discount_Tier', 'Shipping_Days', 'Is_Loss', 'Order_Month', 'Order_Year', 'Profit_Margin', 'Order_DayName', 'Order_Quarter'}
+2026-07-09 12:39:57  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:57  [INFO    ]    13. Generating Summary Report
+2026-07-09 12:39:57  [INFO    ]  ----------------------------------------------------------------------
+2026-07-09 12:39:57  [INFO    ]  Summary report saved → '/opt/proyecto/logs/cleaning_summary.txt'
+2026-07-09 12:39:57  [INFO    ]  ═══ PIPELINE COMPLETE ═══
